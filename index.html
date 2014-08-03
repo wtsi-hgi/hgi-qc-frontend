@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>HGI Lanelet QC</title>
+        <link rel="stylesheet" type="text/css" href="hgi-qc-frontend.css"/>
+<!--	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.css"/>-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="jquery-dynatable/jquery.dynatable.js"></script>
+        <link rel="stylesheet" type="text/css" href="jquery-dynatable/jquery.dynatable.css"/>
+	<script>
+	  var qcData;
+	  $(document).ready(function() {
+	    $.ajax({
+	      url: 'https://hgi.dev.sanger.ac.uk/api/qc/study/SEQCAP_DDD_MAIN_FY3',
+	      success: function(data){
+	        qcData = data["lanelets"];
+	        $('#qc-table').dynatable({
+	          dataset: {
+	            records: qcData
+	          },
+	          table: {
+	            defaultColumnIdStyle: 'underscore'
+	          }
+	        });
+	       }
+	     });
+	  });
+	</script>
+    </head>
+    <body>
+      <div class="container">
+	<table id="qc-table">
+	  <thead>
+	    <th>Individual</th>
+	    <th>Sample</th>
+	    <th>Library</th>
+	    <th>Lanelet</th>
+	    <th>Lanelet GT Check</th>
+	    <th>Lanelet NPG QC</th>
+	    <th>Lanelet Auto QC</th>
+	    <th>Lanelet QC Status</th>
+	    <th>Readlen</th>
+	    <th>Raw Bases GB</th>
+	    <th>Mapped Bases GB</th>
+	    <th>Mapped Bases after rmdup GB</th>
+	    <th>Duplicate Read Percent</th>
+	  </thead>
+	  <tbody>
+	  </tbody>
+	</table>
+      </div>
+    </body>
+</html>

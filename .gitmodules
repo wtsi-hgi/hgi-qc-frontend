@@ -1,0 +1,3 @@
+[submodule "jquery-dynatable"]
+	path = jquery-dynatable
+	url = https://github.com/wtsi-hgi/jquery-dynatable.git
